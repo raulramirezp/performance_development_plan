@@ -122,3 +122,17 @@ trait Monad[F[_]] extends Functor[F]:
         def map2[B, C](fb: F[B])(f: (A, B) => C): F[C] = 
             fa.flatMap(a => fb.map(b => f(a, b)))
 ```
+
+## Conclusions
+
+- All monads are functors, but not all functors are monads.
+- ```
+  Monad combinators,
+   - unit and flatMap
+   - unit and compose
+   - unit, map, and join
+  ```
+- ```
+  A monad is an implementation of one of the minimal sets of monadic combinators,
+  satisfying the laws of associativity and identity.
+  ```

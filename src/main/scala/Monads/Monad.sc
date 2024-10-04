@@ -6,6 +6,9 @@ trait Functor[F[_]]:
 
 trait Monad[F[_]] extends Functor[F]:
   def unit[A](a: => A): F[A]
+  
+  def compose[A, B, C](f: A => F[B], g: B => F[C]): A => F[C]
+  
   extension [A](fa: F[A])
     def flatMap[B](f: A => F[B]): F[B]
 
@@ -25,6 +28,10 @@ case object Empty extends Maybe[Nothing]
 
 given maybeMonad: Monad[Maybe] with
   override def unit[A](a: => A): Maybe[A] = Full(a)
+
+  def compose[A, B, C](f: A => Maybe[B], g: B => Maybe[C]): A => Maybe[C] =
+    a => f(a).flatMap(g)
+    
   extension [A](as: Maybe[A])
     def flatMap[B](f: A => Maybe[B]): Maybe[B] =
       as match
@@ -51,16 +58,6 @@ assert(possible.flatMap(maybeMonad.unit(_)) == possible)
 assert(possible.flatMap(intToMaybeString).flatMap(stringToLong) == possible.flatMap(x => intToMaybeString(x).flatMap(stringToLong)))
 
 // Checking monad laws with Kleisli
-/*
-def compose[A, B, C](f: A => Maybe[B], g: B => Maybe[C]): A => Maybe[C] =
-  a => f(a).flatMap(g)
-
-Full(80).flatMap(compose(compose(f, g), h))
-Full(80).flatMap(compose(f, compose(g, h)))
-
-compose(compose(f, g), h) == compose(f, compose(g, h))
-*/
-
 def kleisliCompose[F[_], A, B, C](f: A => F[B], g: B => F[C])(m: Monad[F]): A => F[C] = {
   (a: A) => m.flatMap(f(a))(g)
 }
@@ -79,3 +76,6 @@ possible.flatMap(left) == possible.flatMap(right)
 
 Full(55).flatMap(left)
 Full(100).flatMap(right)
+
+Full(70).flatMap(maybeMonad.compose(maybeMonad.compose(f, g), h))
+Full(70).flatMap(maybeMonad.compose(f, maybeMonad.compose(g, h)))
