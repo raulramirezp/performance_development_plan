@@ -9,6 +9,7 @@ lazy val root = project.in(file("."))
     scalaVersion := scala3Version,
 
     libraryDependencies ++= Seq(
+      "io.scalaland" %% "chimney" % "1.4.0",
       "org.scalameta" %% "munit" % "1.0.0" % Test,
       "org.scalatest" %% "scalatest" % scalacheckVersion % "test"
     )
