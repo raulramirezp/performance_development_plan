@@ -12,6 +12,7 @@ lazy val root = project.in(file("."))
       "io.scalaland" %% "chimney" % "1.4.0",
       "dev.optics" %% "monocle-core"  % "3.1.0",
       "dev.optics" %% "monocle-macro" % "3.1.0",
+      "org.typelevel" %% "cats-core" % "2.12.0",
       "org.scalameta" %% "munit" % "1.0.0" % Test,
       "org.scalatest" %% "scalatest" % scalacheckVersion % "test"
     )
