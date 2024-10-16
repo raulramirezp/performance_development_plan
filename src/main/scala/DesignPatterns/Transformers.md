@@ -115,4 +115,5 @@ In other word, a `Traversal` allows to focus from a type `S` into `0` to `n` val
 
 ___
 
-taken from [monocle-docs](https://www.optics.dev/Monocle/docs/optics)
+References:
+- [monocle-docs](https://www.optics.dev/Monocle/docs/optics)

@@ -188,3 +188,9 @@ def processThingValue[T <: ThingValue](thing: Thing[T]) = {
   }
 }
 ```
+
+___
+References:
+- https://contributors.scala-lang.org/t/scala-3-and-reflection/3627/6
+- https://squidarth.com/scala/types/2019/01/11/type-erasure-scala.html
+- 

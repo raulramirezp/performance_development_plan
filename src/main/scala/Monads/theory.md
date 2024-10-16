@@ -136,3 +136,9 @@ trait Monad[F[_]] extends Functor[F]:
   A monad is an implementation of one of the minimal sets of monadic combinators,
   satisfying the laws of associativity and identity.
   ```
+
+References:
+- [Book] Functional Programming in Scala SE - Michael Pilquist, Rúnar Bjarnason, Paul Chiusano
+- [Book] Scala with Cats - Copyright 2014‐20 Noel Welsh and Dave Gurnell. CC‐BY‐SA 3.0.
+- https://bartoszmilewski.com/
+- [DevInsideYou- What is a #Monad?](https://www.youtube.com/watch?v=FZAmPhjV11A)
