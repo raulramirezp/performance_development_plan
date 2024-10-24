@@ -133,3 +133,94 @@ and assumptions made about the bandwidth (“Fallacy #3: Bandwidth Is Infinite�
 
 In other words, this fallacy ties back into all the other fallacies, 
 forming an endless loop of confusion and frustration when dealing with networks (which is necessary when using distributed architectures)
+
+## Microservices Architecture
+
+### History
+Microservices differs in this regard—it was named fairly early in its usage and popularized by a famous blog entry
+by Martin Fowler and James Lewis entitled “Microservices,” published in March 2014.
+
+Microservices is heavily inspired by the ideas in `domain-driven design (DDD)`,
+One concept in particular from `DDD`, `bounded context`, decidedly inspired microservices.
+The concept of bounded context represents a decoupling style
+
+If the architect’s goal requires high degrees of decoupling, then they favor
+duplication over reuse. The primary goal of microservices is high decoupling, physically modeling the logical 
+notion of bounded context.
+
+### Topology
+![img_8.png](img_8.png)
+
+Each service include all necessary parts to operate independently, including databases and other dependent components.
+
+### Distributed
+
+Microservices form a distributed architecture: each service runs in its own process,
+which originally implied a physical computer but quickly evolved to virtual machines
+and containers. 
+
+Using a single server to manage multiple running applications allows operational reuse of
+network bandwidth, memory, disk space, and a host of other benefits. However, if all the supported applications 
+continue to grow, eventually some resource becomes constrained on the shared infrastructure. 
+Another problem concerns improper isolation between shared applications.
+
+**Performance is often the negative side effect of the distributed nature of microservices**. 
+Network calls take much longer than method calls, and security verification at
+every endpoint adds additional processing time,
+
+The driving philosophy of microservices is the notion of bounded context: each ser‐
+vice models a domain or workflow.
+- In a monolith, it is common for developers to share common classes, such as Address, between disparate parts of the application
+- Microservices try to avoid coupling, and thus an architect building this architecture style prefers duplication to coupling.
+
+### Granularity
+Architects struggle to find the correct granularity for services in microservices, and
+often make the mistake of making their services too small, which requires them to
+build communication links back between the services to do useful work.
+
+```
+The term “microservice” is a label, not a description.
+    —Martin Fowler
+```
+
+Many developers take the term “microservices” as a commandment, not a description, and create services that are too fine-grained.
+
+The purpose of service boundaries in microservices is to capture a domain or workflow.
+In some applications, those natural boundaries might be large for some parts of the system—some business processes
+are more coupled than others
+
+### Data Isolation
+
+Many other architecture styles use a single database for persistence.
+However, microservices tries to avoid all kinds of coupling, including shared schemas and databases used as integration points
+
+Data isolation is another factor an architect must consider when looking at service
+granularity. Architects must be wary of the entity trap and not simply model their services to resemble single entities in a
+database.
+
+### Operational Reuse
+
+![img_10.png](img_10.png)
+
+Microservices prefers duplication to coupling, however there are parts of architecture that really do benefit from coupling,
+such as operational concerns like monitoring, logging, and circuit breakers. 
+
+Sidecar is like using a library that can be included at independent services, once an upgrade on the library is published (ServicePlane) 
+the microservices can upgrade the library version allowing unified control across the architecture for concerns like logging and monitoring. 
+The common sidecar components connect to form a consistent operational interface across all microservices
+
+
+### Frontends
+
+![img_11.png](img_11.png)
+The monolithic frontend features a single user interface that calls through the API layer to satisfy user requests.
+The frontend could be a rich desktop, mobile, or web application
+
+![img_12.png](img_12.png)
+
+This approach utilizes components at the user interface level to create a
+synchronous level of granularity and isolation in the user interface as the backend
+services. Each service emits the user interface for that service, which the frontend
+coordinates with the other emitted user interface components. Using this pattern,
+teams can isolate service boundaries from the user interface to the backend services,
+unifying the entire domain within a single team.
