@@ -180,3 +180,7 @@ recommending products, or even detecting anomalies.
 
 
 ![img_12.png](img_12.png)
+
+References:
+- [NoSQL Essential Training](https://learn.epam.com/catalog/detailsPage?id=b6caac6b-afbc-4c0f-9f17-ebc862603cf3)
+- [[Book] designing data intensive applications](https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/)

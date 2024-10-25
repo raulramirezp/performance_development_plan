@@ -224,3 +224,7 @@ services. Each service emits the user interface for that service, which the fron
 coordinates with the other emitted user interface components. Using this pattern,
 teams can isolate service boundaries from the user interface to the backend services,
 unifying the entire domain within a single team.
+
+**References:**
+- [[Book] fundamentals of software by Mark Richards, Neal Ford](https://www.oreilly.com/library/view/fundamentals-of-software/9781492043447/)
+- [AWS lecture about monolithic and microservices architecture](https://aws.amazon.com/compare/the-difference-between-monolithic-and-microservices-architecture/)
